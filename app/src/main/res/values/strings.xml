@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MySensors</string>
+    <string name="step_flush">Flush</string>
+    <string name="sensor_list">SensorList</string>
+    <string name="open_camera">OpenCamera</string>
+    <string name="hello_lewis">Hello lewis!</string>
+    <string name="hello_world">Hello World!</string>
+    
+</resources>
