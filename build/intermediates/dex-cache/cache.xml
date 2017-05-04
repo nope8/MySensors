@@ -43,7 +43,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="b4a1d5cdcae9a53ceed3b4d019c93af34e437311">
+        sha1="4c09aaacd44370f5116ca468c6f230d88ce36eea">
         <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_250e0e65325b504de7bbbd837cc1fe710d814e52/classes.dex" />
     </item>
     <item
@@ -88,7 +88,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="0dfbf8bdeb2a8bf214bdaf209a90f9924ce5120f">
+        sha1="8eb508c9dc8040c83d83d1b51e57315e47b69ff5">
         <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_87135ae88afd6b2a1f8eb54187cbca4fa1f74c89/classes.dex" />
     </item>
     <item

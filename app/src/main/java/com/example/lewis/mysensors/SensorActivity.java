@@ -41,10 +41,13 @@ public class SensorActivity extends Activity implements SensorEventListener {
     private static File my_sensor_file;
     private static FileOutputStream my_sensor_fops;
     private static final boolean step_counter_enable = true;
-    private static final boolean step_detector_enable = false;
-    private static final boolean accelerometer_enable = true;
-    private static long last_step_counter_timestamp = 0;
+    private static final boolean step_detector_enable = true;
+    private static final boolean accelerometer_enable = false;
+    private static float last_step_counter_timestamp = 0;
+    private static float last_step_detector_timestamp = 0;
+    private static float last_step_counter_value = 0;
     private static long step_detector_total = 0;
+
 
     private static  ArrayList<String> myStringArray = new ArrayList<String>();
 
@@ -166,9 +169,10 @@ public class SensorActivity extends Activity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         String OutputString = "";
-        long interval = 0;
+        float interval_step = 0;
+        boolean show_list = false;
 
-        Log.i(TAG, "onSensorChanged");
+
 
         SimpleDateFormat cur_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         OutputString += cur_time.format(new Date()) + " ";
@@ -182,26 +186,41 @@ public class SensorActivity extends Activity implements SensorEventListener {
         if(event.sensor.getName().compareTo("BMI160 Step Detector") == 0)
         {
             float time = (float) (event.timestamp / 100000000) / 10;
+            float interval_time = 0;
+
+            interval_time = time - last_step_detector_timestamp;
             step_detector_total += event.values[0];
-            OutputString += ", " + step_detector_total + ", " + time;
+            OutputString += ", " + step_detector_total + ", " + time + ", " + interval_time;
             TextView textView = (TextView) findViewById(R.id.step_detector);
             textView.setText(OutputString);
+
+            last_step_detector_timestamp = time;
+            show_list = true;
 
         }
         else if(event.sensor.getName().compareTo("BMI160 Step Counter") == 0)
         {
-            event.timestamp = event.timestamp / 1000000000L;
-            interval = event.timestamp - last_step_counter_timestamp;
+            float time = 0;
+            float interval_time = 0;
 
-            OutputString += ", " + event.timestamp + ", " + interval;
+            Log.i(TAG, "onSensorChanged");
+
+            time = (float)(event.timestamp / 100000000) / 10;
+            interval_time = time - last_step_counter_timestamp;
+            interval_step = event.values[0] - last_step_counter_value;
+            OutputString += ", " + interval_step + ", " + event.timestamp + ", " + interval_time;
 
             TextView textView = (TextView)findViewById(R.id.step_counter);
             textView.setText(OutputString);
 
-            last_step_counter_timestamp = event.timestamp;
+            last_step_counter_timestamp = time;
+            last_step_counter_value = event.values[0];
+            show_list = true;
+        }
 
 
-
+        if(show_list == true)
+        {
             myStringArray.add(OutputString);
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myStringArray);
@@ -209,17 +228,18 @@ public class SensorActivity extends Activity implements SensorEventListener {
             ListView listView = (ListView) findViewById(R.id.listview);
             listView.setAdapter(adapter);
 
+            //save log to /data/mysensor*.log
+            Log.i(TAG, OutputString);
+            try {
+                StringBuffer sb = new StringBuffer();
+                sb.append(OutputString + "\n");
+                my_sensor_fops.write(sb.toString().getBytes("utf-8"));
+            }catch (IOException ex) {
+                System.out.println(ex.getStackTrace());
+            }
         }
 
 
-        Log.i(TAG, OutputString);
-        try {
-            StringBuffer sb = new StringBuffer();
-            sb.append(OutputString + "\n");
-            my_sensor_fops.write(sb.toString().getBytes("utf-8"));
-        }catch (IOException ex) {
-            System.out.println(ex.getStackTrace());
-        }
 
         if(event.values[0] >= 10 && flag == 0){
             //dispatchTakePictureIntent();

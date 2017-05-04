@@ -53,7 +53,9 @@
             android:layout_height="wrap_content"
             android:fastScrollEnabled="true"
             android:fastScrollAlwaysVisible="true"
-            android:fadeScrollbars="true">
+            android:fadeScrollbars="true"
+            android:stackFromBottom="true"
+            android:transcriptMode="alwaysScroll">
 
         </ListView>
 
