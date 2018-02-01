@@ -3,39 +3,57 @@
 
     <item
         is-multidex="true"
-        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.2.0/jars/classes.jar"
+        jar="/home/lewis/.android/build-cache/c3d4fcc8da8fd6ee205ce0d573468015e1756ddf/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.2"
-        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.2.0_662cb76aaea6cd05ced58f67c5f4f99937ff1d1e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.2.0_d17ea1adff9d76fb653c4f381d578f2f9d91bfb0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.2.0_829c6084ec51f41539e54268e5ef699b8acde9be/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
         sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.2.0_8777e3d2cee32d01afe471c9769507488b8bff50/classes.dex" />
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7b5bff3a20daf8a349b0d41300ac69557d90aee4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/lewis/.android/build-cache/7562dced3b1350c44cc6e39659ff9282b73c9633/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5f1f883429d6bb85002e0e58b1afa24989173514/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7ab7e00fd78c8b390f46637d67c898b441bbea38">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_250e0e65325b504de7bbbd837cc1fe710d814e52/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/lewis/.android/build-cache/140f36502700ebf77ffbac56075f6a92ddc94f06/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d8786ad8f13f0b454fc887e5b589f8d3192a239d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/lewis/.android/build-cache/e64d6467e04d3f0f0596c7b8b906dcf882e40dce/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0aea8d8d8f7c4f69038b7387596e7a07ded34238/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/lewis/.android/build-cache/b0fd31a097eaea74a6a307d276450e5bedfadbd8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5a50c31408455ad0c5f577b43253e15e712b3e9d/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -43,44 +61,62 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="4c09aaacd44370f5116ca468c6f230d88ce36eea">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_250e0e65325b504de7bbbd837cc1fe710d814e52/classes.dex" />
+        sha1="460362df169f7bc21d69845962cdbc62e42da7f0">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_250e0e65325b504de7bbbd837cc1fe710d814e52/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.2.0/jars/classes.jar"
+        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.2"
-        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.2.0_0dcd108e492dbf18bb8a12a291d2ef76585a7932/classes.dex" />
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_87135ae88afd6b2a1f8eb54187cbca4fa1f74c89/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/lewis/.android/build-cache/c25ae7af41a91043295eedfe7067f9648afa0d8b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e0c022d463fce046f0d6196f84dd2ab5e3de94a1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/lewis/.android/build-cache/d34bfac6068a3123918dca0401b6cb448d7ecf55/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_caf4f602b23c5511fb1fcd6f60d2895cc818c1b6/classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="/home/lewis/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.2.0/support-annotations-25.2.0.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
         sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
         <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.2.0_c9f37df8e60c9e753d885936110475258d1d54a5/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.2.0/jars/classes.jar"
+        jar="/home/lewis/.android/build-cache/aafebef2ce5ae30a4c5cbf7da90c02a018d876e7/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.2"
-        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.2.0_f9f02d4a2e0bb4c3b82597ea18b0647c8df97739/classes.dex" />
+        revision="26.0.2"
+        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_73e3c3e7d4ed972f3b0cf67f1780a0bf55bb7470/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.2.0/jars/classes.jar"
+        jar="/home/lewis/.android/build-cache/edde6597adff648796d04a36cae91fbc930b6206/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.2"
-        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.2.0_0d29cccbd5a1ebe2fc93b35433b4e2f09c6dcd0c/classes.dex" />
+        revision="26.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7075b3f62c65c24f3c3f4a4801a79778b9169290/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -88,26 +124,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="8eb508c9dc8040c83d83d1b51e57315e47b69ff5">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_87135ae88afd6b2a1f8eb54187cbca4fa1f74c89/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.2.0_2a1c4ab14be0f52943fdfd43a5f82df11dda1f93/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.2.0_78d09ec4347b0827a642cf0516fc185327a1c938/classes.dex" />
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/lewis/AndroidStudioProjects/MySensors/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_87135ae88afd6b2a1f8eb54187cbca4fa1f74c89/classes.dex" />
     </item>
 
 </items>
