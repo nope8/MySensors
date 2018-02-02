@@ -14,6 +14,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static android.os.PowerManager.*;
 
 
 public class SensorActivity extends Activity implements SensorEventListener {
@@ -47,6 +49,8 @@ public class SensorActivity extends Activity implements SensorEventListener {
     private static float last_step_detector_timestamp = 0;
     private static float last_step_counter_value = 0;
     private static long step_detector_total = 0;
+    private static PowerManager.WakeLock wakelock;
+    private static int totalnumber;
 
 
     private static  ArrayList<String> myStringArray = new ArrayList<String>();
@@ -59,6 +63,8 @@ public class SensorActivity extends Activity implements SensorEventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+        wakelock = pm.newWakeLock(PARTIAL_WAKE_LOCK, "MySensor_WakeLock");
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         if(step_counter_enable)
@@ -107,7 +113,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
 
     protected void onStart(){
         Log.i(TAG, "SensorActivity onStart");
-
+        wakelock.acquire();
 
         super.onStart();
     }
@@ -115,7 +121,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
     protected void onResume(){
         Log.i(TAG, "SensorActivity onResume start");
         super.onResume();
-
+        wakelock.release();
         Log.i(TAG, "SensorActivity onResume end");
     }
 
@@ -181,8 +187,12 @@ public class SensorActivity extends Activity implements SensorEventListener {
             OutputString += ", " + event.values[i];
         }
 
-
-
+        if(event.sensor.getName().compareTo("BMI160 Accelerometer") == 0)
+        {
+            totalnumber ++;
+            TextView tv = (TextView) findViewById(R.id.total_number);
+            tv.setText(String.valueOf(totalnumber));
+        }
         if(event.sensor.getName().compareTo("BMI160 Step Detector") == 0)
         {
             float time = (float) (event.timestamp / 100000000) / 10;
