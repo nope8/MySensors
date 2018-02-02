@@ -42,7 +42,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
     private static FileOutputStream my_sensor_fops;
     private static final boolean step_counter_enable = true;
     private static final boolean step_detector_enable = true;
-    private static final boolean accelerometer_enable = false;
+    private static final boolean accelerometer_enable = true;
     private static float last_step_counter_timestamp = 0;
     private static float last_step_detector_timestamp = 0;
     private static float last_step_counter_value = 0;
@@ -170,7 +170,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         String OutputString = "";
         float interval_step = 0;
-        boolean show_list = false;
+        boolean show_list = true;
 
 
 
