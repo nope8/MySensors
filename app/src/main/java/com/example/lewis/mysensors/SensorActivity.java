@@ -14,6 +14,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -29,29 +30,63 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static android.os.PowerManager.*;
-
+import com.example.lewis.mysensors.SensorStatistic;
 
 public class SensorActivity extends Activity implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mStepCounter;
     private Sensor mStepDetector;
     private Sensor mAccelerometer;
+    private Sensor mGyroscope;
+    private Sensor mMagnetic_field;
     private static final String TAG = "MY_SENSOR";
     private static String my_sensor_path;
     private static File my_sensor_file;
     private static FileOutputStream my_sensor_fops;
-    private static final boolean step_counter_enable = true;
-    private static final boolean step_detector_enable = true;
+    private static final boolean step_counter_enable = false;
+    private static final boolean step_detector_enable = false;
     private static final boolean accelerometer_enable = true;
+    private static final boolean magnetic_field_enable = true;
+    private static final boolean gyroscope_enable = true;
     private static float last_step_counter_timestamp = 0;
     private static float last_step_detector_timestamp = 0;
     private static float last_step_counter_value = 0;
     private static long step_detector_total = 0;
     private static PowerManager.WakeLock wakelock;
-    private static int totalnumber;
+    private static int acc_totalnumber = 0, gyro_totalnumber = 0, mag_totalnumber = 0;
+    SensorStatistic AccSensorStatistic, GyroSensorStatistic, MagSensorStatistic;
 
+    private Lock mlock = new ReentrantLock();
+    Handler handler = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            int acc, gyro,mag;
+
+            mlock.lock();
+            acc = acc_totalnumber;
+            gyro = gyro_totalnumber;
+            mag = mag_totalnumber;
+
+            acc_totalnumber = gyro_totalnumber = mag_totalnumber = 0;
+            mlock.unlock();
+            Log.i(TAG, "sensor frequency acc:" + acc
+                    + ", gyro:" + gyro
+                    + ", mag:" + mag);
+
+            TextView tv = (TextView) findViewById(R.id.acc_total_number);
+            tv.setText(String.valueOf(acc));
+            tv = (TextView) findViewById(R.id.gyro_total_number);
+            tv.setText(String.valueOf(gyro));
+            tv = (TextView) findViewById(R.id.mag_total_number);
+            tv.setText(String.valueOf(mag));
+            handler.postDelayed(this, 1000);
+        }
+    };
 
     private static  ArrayList<String> myStringArray = new ArrayList<String>();
 
@@ -82,9 +117,19 @@ public class SensorActivity extends Activity implements SensorEventListener {
         if(accelerometer_enable)
         {
             mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_FASTEST, 0);
+            mSensorManager.registerListener(this, mAccelerometer, 10000, 0);
         }
 
+        if(gyroscope_enable)
+        {
+            mGyroscope = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+            mSensorManager.registerListener(this, mGyroscope, 10000, 0);
+        }
+        if(magnetic_field_enable)
+        {
+            mMagnetic_field = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED);
+            mSensorManager.registerListener(this, mMagnetic_field, 20000, 0);
+        }
         setContentView(R.layout.activity_sensor);
 
         try {
@@ -108,13 +153,16 @@ public class SensorActivity extends Activity implements SensorEventListener {
             Log.i(TAG, s);
         }
 
+
+        //timer to compute sensor frequence
+
         Log.i(TAG, "SensorActivity onCreate");
     }
 
     protected void onStart(){
         Log.i(TAG, "SensorActivity onStart");
         wakelock.acquire();
-
+        handler.postDelayed(runnable, 1000);
         super.onStart();
     }
 
@@ -132,7 +180,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
 
     protected void onStop(){
 
-
+        handler.removeCallbacks(runnable);
         Log.i(TAG, "SensorActivity onStop");
         super.onStop();
 
@@ -155,7 +203,11 @@ public class SensorActivity extends Activity implements SensorEventListener {
         if(accelerometer_enable)
             mSensorManager.unregisterListener(this, mAccelerometer);
 
+        if(gyroscope_enable)
+            mSensorManager.unregisterListener(this, mGyroscope);
 
+        if(accelerometer_enable)
+            mSensorManager.unregisterListener(this, mMagnetic_field);
 
         super.onDestroy();
 
@@ -186,14 +238,32 @@ public class SensorActivity extends Activity implements SensorEventListener {
         for(int i = 0; i < event.values.length; i ++) {
             OutputString += ", " + event.values[i];
         }
+        OutputString += ", " + event.timestamp + ", " + event.sensor.getType() + ", " + event.sensor.getName();
 
-        if(event.sensor.getName().compareTo("BMI160 Accelerometer") == 0)
+        //if(event.sensor.getName().compareTo("BMI160 Accelerometer") == 0)
+        if(event.sensor.getType()== Sensor.TYPE_ACCELEROMETER)
         {
-            totalnumber ++;
-            TextView tv = (TextView) findViewById(R.id.total_number);
-            tv.setText(String.valueOf(totalnumber));
+            mlock.lock();
+            acc_totalnumber ++;
+            mlock.unlock();
+
         }
-        if(event.sensor.getName().compareTo("BMI160 Step Detector") == 0)
+        else if(event.sensor.getType()== Sensor.TYPE_GYROSCOPE)
+        {
+            mlock.lock();
+            gyro_totalnumber ++;
+            mlock.lock();
+
+        }
+        else if(event.sensor.getType()== Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED)
+        {
+            mlock.lock();
+            mag_totalnumber ++;
+            mlock.lock();
+
+        }
+        //if(event.sensor.getName().compareTo("BMI160 Step Detector") == 0)
+        else if(event.sensor.getType()== Sensor.TYPE_STEP_DETECTOR)
         {
             float time = (float) (event.timestamp / 100000000) / 10;
             float interval_time = 0;
@@ -208,7 +278,8 @@ public class SensorActivity extends Activity implements SensorEventListener {
             show_list = true;
 
         }
-        else if(event.sensor.getName().compareTo("BMI160 Step Counter") == 0)
+        //else if(event.sensor.getName().compareTo("BMI160 Step Counter") == 0)
+        else if(event.sensor.getType()== Sensor.TYPE_STEP_COUNTER)
         {
             float time = 0;
             float interval_time = 0;

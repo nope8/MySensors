@@ -50,7 +50,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/total_number"
+            android:id="@+id/acc_total_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/gyro_total_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/mag_total_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ListView
