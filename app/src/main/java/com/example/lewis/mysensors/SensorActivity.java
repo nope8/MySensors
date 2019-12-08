@@ -8,12 +8,14 @@
  */
 package com.example.lewis.mysensors;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -64,7 +66,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
-        wakelock = pm.newWakeLock(PARTIAL_WAKE_LOCK, "MySensor_WakeLock");
+        wakelock = pm.newWakeLock(PARTIAL_WAKE_LOCK, "MySensor:WakeLock");
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         if(step_counter_enable)
@@ -88,15 +90,23 @@ public class SensorActivity extends Activity implements SensorEventListener {
         setContentView(R.layout.activity_sensor);
 
         try {
-
+            File dir_path = Environment.getExternalStorageDirectory();
+            String absolutePath;
+            absolutePath = getExternalFilesDir(null).getAbsolutePath();
+            Log.d(TAG, "dir_path : " + dir_path.getAbsolutePath());
+            Log.d(TAG, "absolutePath: " + absolutePath);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-            my_sensor_path = "/data/mysensor_" + sdf.format(new Date()) + ".txt";
+            my_sensor_path = "mysensor_" + sdf.format(new Date()) + ".txt";
 
             Log.i(TAG, "my_sensor_file: " + my_sensor_path);
-            my_sensor_file = new File(my_sensor_path);
+            my_sensor_file = new File(absolutePath, my_sensor_path);
 
             if(!my_sensor_file.exists()) {
-                my_sensor_file.createNewFile();
+                try {
+                    my_sensor_file.createNewFile();
+                }catch (Exception e){
+
+                }
             }
 
             Log.i(TAG, "my_sensor_file: " + my_sensor_path);
@@ -121,7 +131,6 @@ public class SensorActivity extends Activity implements SensorEventListener {
     protected void onResume(){
         Log.i(TAG, "SensorActivity onResume start");
         super.onResume();
-        wakelock.release();
         Log.i(TAG, "SensorActivity onResume end");
     }
 
@@ -132,9 +141,10 @@ public class SensorActivity extends Activity implements SensorEventListener {
 
     protected void onStop(){
 
-
         Log.i(TAG, "SensorActivity onStop");
         super.onStop();
+        wakelock.release();
+
 
     }
 
@@ -239,11 +249,16 @@ public class SensorActivity extends Activity implements SensorEventListener {
             listView.setAdapter(adapter);
 
             //save log to /data/mysensor*.log
-            Log.i(TAG, OutputString);
+            //Log.i(TAG, OutputString);
             try {
                 StringBuffer sb = new StringBuffer();
                 sb.append(OutputString + "\n");
-                my_sensor_fops.write(sb.toString().getBytes("utf-8"));
+                if(my_sensor_fops != null)
+                    my_sensor_fops.write(sb.toString().getBytes("utf-8"));
+                else
+                {
+                    Log.d(TAG, "onSensorChanged: my_sensor_fops is null");
+                }
             }catch (IOException ex) {
                 System.out.println(ex.getStackTrace());
             }
