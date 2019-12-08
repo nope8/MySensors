@@ -1,2 +1,2 @@
 # mysensor
-an android sensor app demo for API25: android 7.1.1
+an android sensor app demo to get accelerometer and stepcounter sensor data
